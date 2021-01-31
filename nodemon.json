@@ -1,0 +1,7 @@
+{
+  "colours": true,
+  "exec": "ts-node ./src/index.ts",
+  "ext": "*",
+  "watch": ["src"],
+  "legacyWatch": true
+}
