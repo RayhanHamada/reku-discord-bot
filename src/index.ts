@@ -17,4 +17,4 @@ client.on('ready', () => {
 });
 
 // insert your bot token here !
-client.login('');
+client.login(process.env.TOKEN);
