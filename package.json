@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "discord.js": "^12.5.1",
-    "discord.js-commando": "discordjs/Commando"
+    "discord.js-commando": "discordjs/Commando",
+    "got": "^11.8.1"
   }
 }

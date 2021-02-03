@@ -1,0 +1,5 @@
+
+{
+    "price": "https://api.rekeningku.com/v2/price",
+    "coins": "https://api.rekeningku.com/v2/coins"
+}
