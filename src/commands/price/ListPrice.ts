@@ -2,7 +2,7 @@ import got from 'got';
 import { Message, MessageEmbed } from 'discord.js';
 import { Client, Command, CommandoMessage } from 'discord.js-commando';
 
-import endpoints from '../../endpoints.json';
+import endpoints from '../../reku-endpoints.json';
 import { Price } from '../../types';
 
 export default class ListPrice extends Command {
