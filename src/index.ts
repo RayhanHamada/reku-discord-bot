@@ -1,5 +1,5 @@
 import { CommandoClient } from 'discord.js-commando';
-import ListPrice from './commands/price/ListPrice';
+import { ListPrice } from './commands/price/ListPrice';
 
 const client = new CommandoClient({
   commandPrefix: '$',

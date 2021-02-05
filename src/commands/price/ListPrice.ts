@@ -5,7 +5,7 @@ import { Client, Command, CommandoMessage } from 'discord.js-commando';
 import endpoints from '../../reku-endpoints.json';
 import { Price } from '../../types';
 
-export default class ListPrice extends Command {
+export class ListPrice extends Command {
   constructor(client: Client) {
     super(client, {
       name: 'lprice',
