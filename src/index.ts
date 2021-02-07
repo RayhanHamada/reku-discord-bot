@@ -1,8 +1,11 @@
 import { CommandoClient } from 'discord.js-commando';
+import { DetailPrice } from './commands/price/DetailPrice';
 import { ListPrice } from './commands/price/ListPrice';
 
+import config from "./command-config.json";
+
 const client = new CommandoClient({
-  commandPrefix: '$',
+  commandPrefix: config.prefix,
 });
 
 client.registry
@@ -10,7 +13,7 @@ client.registry
   .registerGroup({ id: 'price', name: 'price' })
   .registerDefaultGroups()
   .registerDefaultCommands()
-  .registerCommands([ListPrice]);
+  .registerCommands([ListPrice, DetailPrice]);
 
 client.on('ready', () => {
   console.log(`im ready !`);
@@ -18,3 +21,4 @@ client.on('ready', () => {
 
 // insert your bot token here !
 client.login(process.env.TOKEN);
+

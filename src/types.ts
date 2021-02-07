@@ -51,3 +51,23 @@ export type Price = {
    */
   cp: number;
 };
+
+export type Coin = {
+  id: number;
+  accountcode: string;
+  accountname: string;
+  ico: number;
+  discount: number;
+  takerfee: number;
+  minsend: number;
+  maxsend: number;
+  sendfee_internal: number;
+  sendfee_external: number;
+  smsfee: number;
+  logo: string;
+  digits: number;
+  decimals: number;
+  enablesendfund: number;
+  enablebuy: number;
+  enablesell: number;
+};

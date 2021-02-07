@@ -4,6 +4,7 @@ import { Client, Command, CommandoMessage } from 'discord.js-commando';
 
 import endpoints from '../../reku-endpoints.json';
 import { Price } from '../../types';
+import { formatPriceEmbed } from '../../utils';
 
 export class ListPrice extends Command {
   constructor(client: Client) {
@@ -31,33 +32,22 @@ export class ListPrice extends Command {
 
           prices.forEach((price, idx) => {
             if (idx % 12 !== 0) {
-              embed.addField(price.cd, this.formatEmbed(price), true);
+              embed.addField(price.cd, formatPriceEmbed(price), true);
               return;
             }
 
             msg.reply(embed);
             embed = new MessageEmbed();
             embed.setTitle(`Price per ${dateStr}`);
-            embed.addField(price.cd, this.formatEmbed(price), true);
+            embed.addField(price.cd, formatPriceEmbed(price), true);
           });
           msg.reply(embed);
         })
         .catch(() => {
           embed.setColor('#ff0000').setDescription('');
         });
-
-      return null;
     }
 
     return null;
-  }
-
-  private formatEmbed(price: Price) {
-    return `close     : ${price.c}
-      open      : ${price.o}
-      high      : ${price.h}
-      low       : ${price.l}
-      volume    : ${price.v}
-      percentage: ${price.cp}`;
   }
 }
