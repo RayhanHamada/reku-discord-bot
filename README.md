@@ -3,7 +3,7 @@ Discord bot untuk api dari rekeningku
 
 ## Fitur
 - [x] list semua harga crypto
-- [ ] fetch harga crypto tertentu
+- [x] fetch harga crypto tertentu
 - [ ] fetch order per coin
 - [ ] fetch status maintenance, minimal deposit dan withdraw
 - [ ] fetch status buy/sell untuk coin tertentu
