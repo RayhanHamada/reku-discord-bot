@@ -20,4 +20,4 @@ client.on('ready', () => {
 });
 
 // insert your bot token here !
-client.login(`ODA3ODI4NjA4MjY1MzU1MjY0.YB9rBA.2sSucXD8sPfz5c2gx2QonutpoyI`);
+client.login(process.env.TOKEN);
