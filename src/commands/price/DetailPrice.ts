@@ -4,7 +4,7 @@ import got from 'got';
 
 import endpoints from '../../reku-endpoints.json';
 import { Coin, Price } from '../../types';
-import { formatPriceEmbed } from '../../utils';
+import { formatPriceEmbed, getTimeNow } from '../../utils';
 
 export class DetailPrice extends Command {
   constructor(client: CommandoClient) {
@@ -24,9 +24,7 @@ export class DetailPrice extends Command {
       if (!args) return msg.reply('please provide a coin !');
 
       // get available coins on rekeningku
-      const coins = await got
-        .get(endpoints.coins, {})
-        .json<{ result: Coin[] }>();
+      const coins = await got.get(endpoints.coins).json<{ result: Coin[] }>();
 
       const coin = coins.result.find(
         coin => coin.accountcode.toLowerCase() === args.toLowerCase()
@@ -41,8 +39,7 @@ export class DetailPrice extends Command {
 
       const embed = new MessageEmbed();
 
-      // TODO: add date to title
-      embed.setTitle(`Price of ${coin.accountcode} per <date>`);
+      embed.setTitle(`Price of ${coin.accountcode} per ${getTimeNow()}`);
       embed.addField(price.cd, formatPriceEmbed(price));
 
       return msg.reply(embed);

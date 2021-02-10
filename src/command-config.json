@@ -1,3 +1,5 @@
 {
-    "prefix": "$"
+    "prefix": "$",
+    "timezone": "Asia/Jakarta",
+    "timeFormat": "DD/MM/YYYY HH:mm"
 }

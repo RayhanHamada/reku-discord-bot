@@ -4,7 +4,7 @@ import { Client, Command, CommandoMessage } from 'discord.js-commando';
 
 import endpoints from '../../reku-endpoints.json';
 import { Price } from '../../types';
-import { formatPriceEmbed } from '../../utils';
+import { formatPriceEmbed, getTimeNow } from '../../utils';
 
 export class ListPrice extends Command {
   constructor(client: Client) {
@@ -17,8 +17,7 @@ export class ListPrice extends Command {
   }
 
   public async run(msg: CommandoMessage): Promise<Message | Message[] | null> {
-    const date = new Date(msg.createdTimestamp);
-    const dateStr = `${date.toLocaleString()}`;
+    const dateStr = getTimeNow();
 
     if (!msg.author.bot) {
       let embed: MessageEmbed;
