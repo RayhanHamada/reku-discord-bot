@@ -1,7 +1,9 @@
 # reku-discord-bot
+
 Discord bot untuk api dari rekeningku
 
 ## Fitur
+
 - [x] list semua harga crypto
 - [x] fetch harga crypto tertentu
 - [ ] fetch order per coin
@@ -10,3 +12,7 @@ Discord bot untuk api dari rekeningku
 - [ ] fetch ask/bid
 - [ ] fetch crypto gainers/losers per 1 hari
 - [ ] watch harga per currency per user
+
+## Configuration
+
+The commands configuration can be found under src folder, you can customize the prefix, timezone, and timeformat for the bot.
