@@ -11,36 +11,43 @@ export class DetailPrice extends Command {
     super(client, {
       name: 'dprice',
       group: 'price',
-      description: 'show a price',
+      description: 'show one or more price',
       memberName: 'dprice',
     });
   }
 
   public async run(
     msg: CommandoMessage,
-    args: string
+    args: string[]
   ): Promise<Message | Message[] | null> {
     if (!msg.author.bot) {
-      if (!args) return msg.reply('please provide a coin !');
+      if (!args.length) return msg.reply('please provide a coin !');
 
       // get available coins on rekeningku
-      const coins = await got.get(endpoints.coins).json<{ result: Coin[] }>();
+      const rekuCoins = await got
+        .get(endpoints.coins)
+        .json<{ result: Coin[] }>();
 
-      const coin = coins.result.find(
-        coin => coin.accountcode.toLowerCase() === args.toLowerCase()
+      // get only the specific coin from argument
+      const coins = rekuCoins.result.filter(coin =>
+        args.includes(coin.accountcode.toLowerCase())
       );
 
-      if (!coin) return msg.reply(`Coin ${args} not found`);
+      if (!coins.length) return msg.reply(`Coin not found`);
+
+      const coinsCode = coins.map(coin => coin.accountcode.toLowerCase());
 
       // get coin price
-      const price = await got
-        .get(`${endpoints.price}/${coin.id}`)
-        .json<Price>();
+      const rekuPrices = await got.get(endpoints.price).json<Price[]>();
+
+      const price = rekuPrices.filter(p =>
+        coinsCode.includes(p.cd.toLowerCase())
+      );
 
       const embed = new MessageEmbed();
+      embed.setTitle(`Price per ${getTimeNow()}`);
 
-      embed.setTitle(`Price of ${coin.accountcode} per ${getTimeNow()}`);
-      embed.addField(price.cd, formatPriceEmbed(price));
+      price.forEach(p => embed.addField(p.cd, formatPriceEmbed(p), true));
 
       return msg.reply(embed);
     }
